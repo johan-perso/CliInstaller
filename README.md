@@ -19,6 +19,7 @@ Il est possible de lancer CliInstaller en faisant une commande dans votre termin
 
 ## Liste des CLI installables
 
+*HasteCLI, SpeedtestCLI et Crypterm ne sont plus maintenus.*
 | Nom            	| Source 	| Nom (sur la source)    	| Site                                      	|
 |----------------	|--------	|------------------------	|-------------------------------------------	|
 | Twitterminal   	| NPM    	| "twitterminal"         	| https://twiterminal.carrd.co              	|
