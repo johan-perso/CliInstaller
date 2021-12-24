@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html style="background-color: #293241">
+<head>
+	<!-- Quelques trucs -->
+	<title>CliInstaller</title>
+	<meta charset="UTF-8"/>
+	<meta http-equiv="Content-Security-Policy" content="script-src * 'unsafe-inline' ">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" >
+
+	<!-- Un peu de CSS pour la scrollbar -->
+	<style>
+		::-webkit-scrollbar {
+			width: 6px;
+			cursor: pointer;
+		}
+		::-webkit-scrollbar-thumb {
+			cursor: pointer;
+			background-color: #3D5A80;
+		}
+	</style>
+
+	<!-- TailwindCSS + polices d'écritures -->
+	<link href="https://firebasestorage.googleapis.com/v0/b/storage-bf183.appspot.com/o/otherContent%2Fstyle.css?alt=media" rel="stylesheet">
+	<link rel="stylesheet" href="/font_inter.css">
+	<link rel="stylesheet" href="https://egkoppel.github.io/product-sans/css/product-sans-500-all.css">
+
+	<!-- Font Awesome (du css pas grave), konami.js, socket.io et un fichier JS -->
+	<link href="https://cdn.jsdelivr.net/gh/hung1001/font-awesome-pro@4cac1a6/css/all.css" rel="stylesheet" type="text/css"/>
+	<script src="/konami.js"></script>
+	<script src="/socket.io/socket.io.js"></script>
+	<script src="/script.js"></script>
+</head>
+<body class="h-screen hero items-center">
+	<div class="text-center items-center justify-center w-full mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8 z-20">
+		<div id="closeApp" class="absolute right-2 top-0">
+			<span href="javascript:void(0)" onclick="window.close()" style="font-size: 2.50em;" class="cursor-pointer text-red-400 hover:text-red-500"><i class="far fa-times-circle"></i></span>
+		</div>
+
+		<noscript>
+			<div class="min-w-screen h-screen animated fadeIn faster fixed left-0 top-0 flex justify-center items-center inset-0 z-50 outline-none focus:outline-none bg-no-repeat bg-center bg-cover"><div class="absolute bg-black opacity-80 inset-0 z-0"></div><div class="w-full max-w-lg p-5 relative mx-auto my-auto rounded-xl shadow-lg bg-gray-800"><div class="text-center p-5 flex-auto justify-center"><span class="text-yellow-400" style="font-size: 4.42em;"><i class="fas fa-exclamation-circle"></i></span><h2 class="text-2xl font-bold py-4 text-indigo-500">Oupsi...</h3><p class="text-sm text-gray-400 px-8">Votre navigateur ne semble pas avoir JavaScript d'activé. Veuillez l'activer puis réessayer...</p></div></div></div>
+		</noscript>
+
+		<h2 class="text-5xl font-extrabold sm:text-6xl block" style="font-family: Product Sans; color: #98C1D9;">
+			CliInstaller
+		</h2>
+
+		<p id="explication" class="text-xl mt-4 text-gray-400">
+			Cocher les CLI que vous souhaitez installer sur votre appareil, puis faite "Installer".
+		</p>
+
+		<button class="mt-5 btn btn-ghost" id="installCLI" onclick="installCLI()" style="background-color: #3D5A80;">Installer les CLI sélectionnés</button> 
+
+		<div id="listCli" class="mt-4 space-y-2 text-left">
+			<div>
+				<div class="flex space-x-3">
+					<input name="twitterminal" type="checkbox" class="checkbox checkbox-md">
+					<p name="twitterminalP" class="font-bold text-gray-400">Twitterminal</p>
+				</div>
+				<p class="text-gray-400">Permet de tweeter et intéragir avec Twitter</p>
+			</div>
+			<div>
+				<div class="flex space-x-3">
+					<input name="ecochat" type="checkbox" class="checkbox checkbox-md">
+					<p name="ecochatP" class="font-bold text-gray-400">Ecochat</p>
+				</div>
+				<p class="text-gray-400">Un chat via terminal</p>
+			</div>
+			<div>
+				<div class="flex space-x-3">
+					<input name="hibercli" type="checkbox" class="checkbox checkbox-md">
+					<p name="hibercliP" class="font-bold text-gray-400">HiberCLI</p>
+				</div>
+				<p class="text-gray-400">Le plus simple pour télécharger/uploader un fichier</p>
+			</div>
+			<div>
+				<div class="flex space-x-3">
+					<input name="ip-info" type="checkbox" class="checkbox checkbox-md">
+					<p name="ip-infoP" class="font-bold text-gray-400">IP-Info</p>
+				</div>
+				<p class="text-gray-400">Obtenez des informations sur une adresse IP</p>
+			</div>
+			<div>
+				<div class="flex space-x-3">
+					<input name="rickdetect" type="checkbox" class="checkbox checkbox-md">
+					<p name="rickdetectP" class="font-bold text-gray-400">Rickdetect</p>
+				</div>
+				<p class="text-gray-400">Détecte un rick roll dans un lien même raccourci</p>
+			</div>
+			<div>
+				<div class="flex space-x-3">
+					<input name="hastecli" type="checkbox" class="checkbox checkbox-md">
+					<p name="hastecliP" class="font-bold text-gray-400">HasteCLI</p>
+					<span style="font-size: 1.15em; color: #EE6C4D;" data-tip="Non maintenu (mai 2021)" class="tooltip"><i class="fas fa-exclamation-triangle"></i></span>
+				</div>
+				<p class="text-gray-400">Partager du texte, via un lien</p>
+			</div>
+			<div>
+				<div class="flex space-x-3">
+					<input name="speedtest" type="checkbox" class="checkbox checkbox-md">
+					<p name="speedtestP" class="font-bold text-gray-400">Speedtest</p>
+					<span style="font-size: 1.15em; color: #EE6C4D;" data-tip="Non maintenu (mai 2021)" class="tooltip"><i class="fas fa-exclamation-triangle"></i></span>
+				</div>
+				<p class="text-gray-400">Effectuer un test de débit depuis un terminal</p>
+			</div>
+			<div>
+				<div class="flex space-x-3">
+					<input name="crypterm" type="checkbox" class="checkbox checkbox-md">
+					<p name="cryptermP" class="font-bold text-gray-400">Crypterm</p>
+					<span style="font-size: 1.15em; color: #EE6C4D;" data-tip="Non maintenu (mars 2021)" class="tooltip"><i class="fas fa-exclamation-triangle"></i></span>
+				</div>
+				<p class="text-gray-400">Chiffrer, et déchiffrer du texte</p>
+			</div>
+		</div>
+
+		<div class="mt-3 max-w-lg mx-auto footer p-1 text-neutral-content invisible md:visible">
+			<div class="grid-flow-col text-gray-400">
+				<p>CliInstaller, version {version}</p>
+			</div>
+		</div>
+		<footer class="max-w-lg mx-auto p-1 footer text-neutral-content">
+			<div class="grid-flow-col text-gray-400">
+				<p>Crée par <a href="javascript:void(0)" onclick="openWebPage('https:\/\/johanstickman.com')" class="underline">Johan</a> le stickman</p>
+				<p class="md:hidden">|&nbsp; Version {version}</p>
+			</div>
+
+			<div class="items-center text-center grid-flow-col gap-4 md:place-self-center md:justify-self-end">
+				<a href="javascript:void(0)" onclick="openWebPage('https:\/\/twitter.com/Johan_Stickman')" class="text-gray-400 hover:text-gray-200">
+					<span class="sr-only">Twitter @ Johan_Stickman</span>
+					<span class="w-6 h-6" style="font-size: 1.25em;"><i class="fab fa-twitter"></i> </span>
+				</a>
+				<a href="javascript:void(0)" onclick="openWebPage('https:\/\/github.com/johan-perso')" class="text-gray-400 hover:text-gray-200">
+					<span class="sr-only">GitHub @ johan-perso</span>
+					<span class="w-6 h-6" style="font-size: 1.25em;"><i class="fab fa-github"></i> </span>
+				</a>
+				<a href="javascript:void(0)" onclick="openWebPage('https:\/\/discord.gg/SWkh4mk')" class="text-gray-400 hover:text-gray-200">
+					<span class="sr-only">Discord</span>
+					<span class="w-6 h-6" style="font-size: 1.25em;"><i class="fab fa-discord"></i> </span>
+				</a>
+				<a href="javascript:void(0)" onclick="openWebPage('https:\/\/johanstickman.com')" class="text-gray-400 hover:text-gray-200">
+					<span class="sr-only">johanstickman.com</span>
+					<span class="w-6 h-6" style="font-size: 1.25em;"><i class="fas fa-globe"></i> </span>
+				</a>
+			</div>
+		</footer>
+	</div>
+</body>
+</html>
