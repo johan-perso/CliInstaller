@@ -1,6 +1,6 @@
 {
   "name": "clinstaller",
-  "version": "1.0.1",
+  "version": "1.0.4",
   "description": "Application Electron permettant d'installer des CLI via NPM.",
   "main": "server.js",
   "scripts": {
