@@ -215,4 +215,3 @@ const serv = server.listen(process.env.PORT || 3000, () => {
 		if(err) return console.log(chalk.red("Erreur lors du lancement de l'application : ") + err + chalk.red("Tenter d'installer electron (") + chalk.cyan("npm i electron") + chalk.red(") et de relancer. Vous pouvez également aller sur http://localhost:3000 via votre navigateur."))
 	});
 });
-*/
