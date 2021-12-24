@@ -14,7 +14,7 @@ Une app ElectronJS pour installer des CLI, en moins d'une minute.
 
 ## Installation
 
-Il est possible de lancer CliInstaller en faisant une commande dans votre terminal (`npx cliinstaller`), sinon vous pouvez télécharger et compiler l'app à partir de ce repo.
+Il est possible de lancer CliInstaller en faisant une commande dans votre terminal (`npx clinstaller` (un seul i)), sinon vous pouvez télécharger et compiler l'app à partir de ce repo.
 
 
 ## Liste des CLI installables
