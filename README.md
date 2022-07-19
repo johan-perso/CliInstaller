@@ -1,3 +1,8 @@
+# Arrêt de CliInstaller
+
+CliInstaller n'est désormais plus supporté et ne sera plus mis à jour. J'sais pas il s'est passé quoi dans ma tête quand j'ai eu l'idée de faire une app graphique pour installer des apps pas graphique mais ptdr c'est pas une bonne idée.
+
+
 # CliInstaller
 
 Une app ElectronJS pour installer des CLI, en moins d'une minute.
